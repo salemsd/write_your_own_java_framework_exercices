@@ -1,6 +1,5 @@
 package com.github.forax.framework.mapper;
 
-import java.beans.PropertyDescriptor;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,11 +9,14 @@ public final class JSONWriter {
     @Override
     protected List<Generator> computeValue(Class<?> aClass) {
       return Arrays.stream(Utils.beanInfo(aClass).getPropertyDescriptors())
-              .filter(property -> !property.getName().equals("class"))
-              .map(property -> (Generator) (writer, bean) -> {
+              .filter(property -> !property.getName().equals("class")) // Avoid stack overflow by returning classes infinitely
+              .<Generator>map(property -> {
+                // is ran only once for each property
                 var getter = property.getReadMethod();
                 var annotation = getter.getAnnotation(JSONProperty.class); // Check if the getter has a json annotation (for example first-name instead of firstName
-                return '"' + (annotation == null ? property.getName() : annotation.value()) + "\": " + writer.toJSON(Utils.invokeMethod(bean, getter));
+                var name = annotation == null ? property.getName() : annotation.value();
+                var prefix = '"' + name + "\": ";
+                return (writer, bean) -> prefix + name + "\": " + writer.toJSON(Utils.invokeMethod(bean, getter)); // is ran for each loop cycle
               })
               .toList();
     }
@@ -33,16 +35,11 @@ public final class JSONWriter {
       case String s -> '"' + s + '"';
       case null -> "null";
       default -> {
-        var beanInfoProperties = GENERATOR_CLASS_VALUE.get(o.getClass());
+        var generators = GENERATOR_CLASS_VALUE.get(o.getClass());
         // var properties = beanInfo.getPropertyDescriptors(); // Bad performance because it will still return a new array since they're mutable (that's why we made the ClassValue return the array instead
 
-        yield Arrays.stream(beanInfoProperties)
-                .filter(property -> !property.getName().equals("class")) // Avoid stack overflow by returning classes infinitely
-                .map(property -> {
-                  var getter = property.getReadMethod();
-                  var annotation = getter.getAnnotation(JSONProperty.class); // Check if the getter has a json annotation (for example first-name instead of firstName
-                  return '"' + (annotation == null ? property.getName() : annotation.value()) + "\": " + toJSON(Utils.invokeMethod(o, getter));
-                })
+        yield generators.stream()
+                .map(generator -> generator.generate())
                 .collect(Collectors.joining(", ", "{", "}"));
 
 

@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74bd28e4-ede9-4bbb-a92f-dae249a45c06" name="Changes" comment="JSONWriter until q3">
+    <list default="true" id="74bd28e4-ede9-4bbb-a92f-dae249a45c06" name="Changes" comment="JSONWriter, replaced class in generator with lambda (better)">
       <change beforePath="$PROJECT_DIR$/mapper/src/main/java/com/github/forax/framework/mapper/JSONWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/mapper/src/main/java/com/github/forax/framework/mapper/JSONWriter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -186,7 +186,7 @@
       <option name="presentableId" value="Default" />
       <updated>1725953128732</updated>
       <workItem from="1725953129787" duration="776000" />
-      <workItem from="1725954495971" duration="7820000" />
+      <workItem from="1725954495971" duration="8931000" />
     </task>
     <task id="LOCAL-00001" summary="create test2.txt">
       <option name="closed" value="true" />
@@ -212,7 +212,23 @@
       <option name="project" value="LOCAL" />
       <updated>1725961919814</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="JSONWriter, add generator with class and stream">
+      <option name="closed" value="true" />
+      <created>1725962459387</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1725962459387</updated>
+    </task>
+    <task id="LOCAL-00005" summary="JSONWriter, replaced class in generator with lambda (better)">
+      <option name="closed" value="true" />
+      <created>1725962513139</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1725962513139</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,8 +247,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="comment starts at the wrong place" />
-    <MESSAGE value="rework interceptor code/questions" />
     <MESSAGE value="use throw switch in the tests" />
     <MESSAGE value="remove weird import that make the CI fails" />
     <MESSAGE value="update injector and rewrite annotation scanner" />
@@ -256,6 +270,8 @@
     <MESSAGE value="create test2.txt" />
     <MESSAGE value="delete test2.txt" />
     <MESSAGE value="JSONWriter until q3" />
-    <option name="LAST_COMMIT_MESSAGE" value="JSONWriter until q3" />
+    <MESSAGE value="JSONWriter, add generator with class and stream" />
+    <MESSAGE value="JSONWriter, replaced class in generator with lambda (better)" />
+    <option name="LAST_COMMIT_MESSAGE" value="JSONWriter, replaced class in generator with lambda (better)" />
   </component>
 </project>
