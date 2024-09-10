@@ -1,17 +1,32 @@
 package com.github.forax.framework.mapper;
 
-import java.beans.BeanInfo;
 import java.beans.PropertyDescriptor;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public final class JSONWriter {
-  private static final ClassValue<PropertyDescriptor[]> PROPERTY_DESCRIPTOR_CLASS_VALUE = new ClassValue<PropertyDescriptor[]>() { // Creates a new class that inherits ClassValue
+  private static final ClassValue<List<Generator>> GENERATOR_CLASS_VALUE = new ClassValue<>() { // Creates a new class that inherits ClassValue
     @Override
-    protected PropertyDescriptor[] computeValue(Class<?> aClass) {
-      return Utils.beanInfo(aClass).getPropertyDescriptors();
+    protected List<Generator> computeValue(Class<?> aClass) {
+      return Arrays.stream(Utils.beanInfo(aClass).getPropertyDescriptors())
+              .filter(property -> !property.getName().equals("class"))
+              .<Generator>map(property -> new Generator() {
+                @Override
+                public String generate(JSONWriter writer, Object bean) {
+                  var getter = property.getReadMethod();
+                  var annotation = getter.getAnnotation(JSONProperty.class); // Check if the getter has a json annotation (for example first-name instead of firstName
+                  return '"' + (annotation == null ? property.getName() : annotation.value()) + "\": " + writer.toJSON(Utils.invokeMethod(bean, getter));
+                }
+              })
+              .toList();
     }
   };
+
+  @FunctionalInterface
+  private interface Generator {
+    String generate(JSONWriter writer, Object bean);
+  }
 
   public String toJSON(Object o) {
     return switch (o) {
@@ -21,7 +36,7 @@ public final class JSONWriter {
       case String s -> '"' + s + '"';
       case null -> "null";
       default -> {
-        var beanInfoProperties = PROPERTY_DESCRIPTOR_CLASS_VALUE.get(o.getClass());
+        var beanInfoProperties = GENERATOR_CLASS_VALUE.get(o.getClass());
         // var properties = beanInfo.getPropertyDescriptors(); // Bad performance because it will still return a new array since they're mutable (that's why we made the ClassValue return the array instead
 
         yield Arrays.stream(beanInfoProperties)
