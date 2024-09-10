@@ -11,13 +11,10 @@ public final class JSONWriter {
     protected List<Generator> computeValue(Class<?> aClass) {
       return Arrays.stream(Utils.beanInfo(aClass).getPropertyDescriptors())
               .filter(property -> !property.getName().equals("class"))
-              .<Generator>map(property -> new Generator() {
-                @Override
-                public String generate(JSONWriter writer, Object bean) {
-                  var getter = property.getReadMethod();
-                  var annotation = getter.getAnnotation(JSONProperty.class); // Check if the getter has a json annotation (for example first-name instead of firstName
-                  return '"' + (annotation == null ? property.getName() : annotation.value()) + "\": " + writer.toJSON(Utils.invokeMethod(bean, getter));
-                }
+              .map(property -> (Generator) (writer, bean) -> {
+                var getter = property.getReadMethod();
+                var annotation = getter.getAnnotation(JSONProperty.class); // Check if the getter has a json annotation (for example first-name instead of firstName
+                return '"' + (annotation == null ? property.getName() : annotation.value()) + "\": " + writer.toJSON(Utils.invokeMethod(bean, getter));
               })
               .toList();
     }
