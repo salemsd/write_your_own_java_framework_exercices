@@ -112,7 +112,6 @@ public class InjectorRegistryTest {
     //}
   }
 
-  /*
 
   @Nested
   public class Q3 {
@@ -244,6 +243,7 @@ public class InjectorRegistryTest {
     }
   }
 
+  /*
 
   @Nested
   public class Q5 {
