@@ -11,7 +11,7 @@ public final class JSONWriter {
       return Arrays.stream(Utils.beanInfo(aClass).getPropertyDescriptors())
               .filter(property -> !property.getName().equals("class")) // Avoid stack overflow by returning classes infinitely
               .<Generator>map(property -> {
-                // is ran only once for each property
+//                 is ran only once for each property
                 var getter = property.getReadMethod();
                 var annotation = getter.getAnnotation(JSONProperty.class); // Check if the getter has a json annotation (for example first-name instead of firstName
                 var name = annotation == null ? property.getName() : annotation.value();
@@ -39,7 +39,7 @@ public final class JSONWriter {
         // var properties = beanInfo.getPropertyDescriptors(); // Bad performance because it will still return a new array since they're mutable (that's why we made the ClassValue return the array instead
 
         yield generators.stream()
-                .map(generator -> generator.generate())
+                .map(generator -> generator.generate(this, o))
                 .collect(Collectors.joining(", ", "{", "}"));
 
 
