@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74bd28e4-ede9-4bbb-a92f-dae249a45c06" name="Changes" comment="InjectorRegistry, finish Q1">
+    <list default="true" id="74bd28e4-ede9-4bbb-a92f-dae249a45c06" name="Changes" comment="InjectorRegistry, finish Q4">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/injector/src/main/java/com/github/forax/framework/injector/InjectorRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/injector/src/main/java/com/github/forax/framework/injector/InjectorRegistry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/injector/src/test/java/com/github/forax/framework/injector/InjectorRegistryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/injector/src/test/java/com/github/forax/framework/injector/InjectorRegistryTest.java" afterDir="false" />
@@ -28,6 +28,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
@@ -190,7 +193,7 @@
       <workItem from="1725953129787" duration="776000" />
       <workItem from="1725954495971" duration="10505000" />
       <workItem from="1726267120182" duration="21933000" />
-      <workItem from="1726556619679" duration="6646000" />
+      <workItem from="1726556619679" duration="9307000" />
     </task>
     <task id="LOCAL-00001" summary="create test2.txt">
       <option name="closed" value="true" />
@@ -248,7 +251,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726560899980</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="InjectorRegistry, finish Q4">
+      <option name="closed" value="true" />
+      <created>1726563281303</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1726563281303</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -267,7 +278,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="update injector and rewrite annotation scanner" />
     <MESSAGE value="remove one star for the classpath scanning" />
     <MESSAGE value="SQLi =&gt; JDBi" />
     <MESSAGE value="update POM" />
@@ -292,7 +302,8 @@
     <MESSAGE value="JSONWriter, replaced class in generator with lambda (better)" />
     <MESSAGE value="JSONWriter, finish generator, todo: change toJSON" />
     <MESSAGE value="InjectorRegistry, finish Q1" />
-    <option name="LAST_COMMIT_MESSAGE" value="InjectorRegistry, finish Q1" />
+    <MESSAGE value="InjectorRegistry, finish Q4" />
+    <option name="LAST_COMMIT_MESSAGE" value="InjectorRegistry, finish Q4" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

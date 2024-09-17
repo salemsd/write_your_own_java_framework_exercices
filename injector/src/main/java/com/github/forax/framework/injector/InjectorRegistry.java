@@ -1,7 +1,5 @@
 package com.github.forax.framework.injector;
 
-import java.beans.IntrospectionException;
-import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -57,5 +55,25 @@ public final class InjectorRegistry {
               return setter.isAnnotationPresent(Inject.class);
             })
             .toList();
+  }
+
+  public <T> void registerProviderClass(Class<T> type, Class<? extends T> providerClass) {
+    Objects.requireNonNull(type);
+    Objects.requireNonNull(providerClass);
+
+    var defaultConstructor = Utils.defaultConstructor(providerClass);
+    var injectableProperties = findInjectableProperties(providerClass);
+
+    registerProvider(type, () -> {
+      var newInstance = Utils.newInstance(defaultConstructor);
+      injectableProperties.forEach(property -> {
+        var setter = property.getWriteMethod();
+        var propertyType = property.getPropertyType();
+        var instance = lookupInstance(propertyType); // Is the value of the property. if T is String and value is "Hello" then it's an instance of String
+        Utils.invokeMethod(newInstance, setter, instance);
+      });
+
+      return newInstance;
+    });
   }
 }
