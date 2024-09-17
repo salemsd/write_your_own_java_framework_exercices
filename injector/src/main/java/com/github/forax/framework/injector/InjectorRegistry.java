@@ -1,6 +1,7 @@
 package com.github.forax.framework.injector;
 
 import java.beans.PropertyDescriptor;
+import java.lang.reflect.Constructor;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -57,15 +58,35 @@ public final class InjectorRegistry {
             .toList();
   }
 
+  // There is only one injectable constructor.
+  // Can't create arrays with generic types and getConstructors returns a Constructor<?>[]
+  private static Constructor<?> findInjectableConstructors(Class <?> type) {
+    var injectableConstructors = Arrays.stream(type.getConstructors())
+            .filter(constructor -> constructor.isAnnotationPresent(Inject.class))
+            .toList();
+
+    return switch (injectableConstructors.size()) {
+      case 0 -> Utils.defaultConstructor(type);
+      case 1 -> injectableConstructors.getFirst();
+      default -> throw new IllegalStateException("More than one injectable constructor");
+    };
+  }
+
   public <T> void registerProviderClass(Class<T> type, Class<? extends T> providerClass) {
     Objects.requireNonNull(type);
     Objects.requireNonNull(providerClass);
 
-    var defaultConstructor = Utils.defaultConstructor(providerClass);
+    var injectableConstructor = findInjectableConstructors(providerClass);
     var injectableProperties = findInjectableProperties(providerClass);
 
     registerProvider(type, () -> {
-      var newInstance = Utils.newInstance(defaultConstructor);
+
+      var parameterTypes = injectableConstructor.getParameterTypes();
+      // ??
+      var args = Arrays.stream(parameterTypes)
+              .map(this::lookupInstance)
+              .toArray();
+      var newInstance = Utils.newInstance(injectableConstructor, args);
       injectableProperties.forEach(property -> {
         var setter = property.getWriteMethod();
         var propertyType = property.getPropertyType();
@@ -73,7 +94,7 @@ public final class InjectorRegistry {
         Utils.invokeMethod(newInstance, setter, instance);
       });
 
-      return newInstance;
+      return providerClass.cast(newInstance); // We need to cast because we have a <?>
     });
   }
 }

@@ -371,7 +371,6 @@ public class InjectorRegistryTest {
     }
   }
 
-  /*
 
   @Nested
   public class Q6 {
@@ -494,6 +493,7 @@ public class InjectorRegistryTest {
       );
     }
   }
+  /*
 
   @Nested
   public class Q7 {

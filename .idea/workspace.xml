@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74bd28e4-ede9-4bbb-a92f-dae249a45c06" name="Changes" comment="InjectorRegistry, finish Q4">
+    <list default="true" id="74bd28e4-ede9-4bbb-a92f-dae249a45c06" name="Changes" comment="InjectorRegistry, finish Q5">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/injector/src/main/java/com/github/forax/framework/injector/InjectorRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/injector/src/main/java/com/github/forax/framework/injector/InjectorRegistry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/injector/src/test/java/com/github/forax/framework/injector/InjectorRegistryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/injector/src/test/java/com/github/forax/framework/injector/InjectorRegistryTest.java" afterDir="false" />
@@ -193,7 +193,7 @@
       <workItem from="1725953129787" duration="776000" />
       <workItem from="1725954495971" duration="10505000" />
       <workItem from="1726267120182" duration="21933000" />
-      <workItem from="1726556619679" duration="9307000" />
+      <workItem from="1726556619679" duration="11009000" />
     </task>
     <task id="LOCAL-00001" summary="create test2.txt">
       <option name="closed" value="true" />
@@ -259,7 +259,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726563281303</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="InjectorRegistry, finish Q5">
+      <option name="closed" value="true" />
+      <created>1726566019934</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1726566019934</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -278,7 +286,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="remove one star for the classpath scanning" />
     <MESSAGE value="SQLi =&gt; JDBi" />
     <MESSAGE value="update POM" />
     <MESSAGE value="bump to java 19" />
@@ -303,7 +310,8 @@
     <MESSAGE value="JSONWriter, finish generator, todo: change toJSON" />
     <MESSAGE value="InjectorRegistry, finish Q1" />
     <MESSAGE value="InjectorRegistry, finish Q4" />
-    <option name="LAST_COMMIT_MESSAGE" value="InjectorRegistry, finish Q4" />
+    <MESSAGE value="InjectorRegistry, finish Q5" />
+    <option name="LAST_COMMIT_MESSAGE" value="InjectorRegistry, finish Q5" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
