@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74bd28e4-ede9-4bbb-a92f-dae249a45c06" name="Changes" comment="InjectorRegistry, finish Q5">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/injector/src/main/java/com/github/forax/framework/injector/InjectorRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/injector/src/main/java/com/github/forax/framework/injector/InjectorRegistry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/injector/src/test/java/com/github/forax/framework/injector/InjectorRegistryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/injector/src/test/java/com/github/forax/framework/injector/InjectorRegistryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interceptor/src/main/java/org/github/forax/framework/interceptor/InterceptorRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/interceptor/src/main/java/org/github/forax/framework/interceptor/InterceptorRegistry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interceptor/src/test/java/org/github/forax/framework/interceptor/InterceptorRegistryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/interceptor/src/test/java/org/github/forax/framework/interceptor/InterceptorRegistryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +47,9 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JUnit.InjectorRegistryTest$Q1.executor": "Run",
     "JUnit.InjectorRegistryTest.executor": "Run",
+    "JUnit.InterceptorRegistryTest.executor": "Run",
     "JUnit.JSONWriterTest$Q1.executor": "Run",
     "JUnit.JSONWriterTest.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -59,9 +63,9 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.14261885",
+    "project.structure.side.proportion": "0.30379745",
     "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
   }
@@ -88,7 +92,7 @@
       <command value="mvn package" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.InjectorRegistryTest">
+  <component name="RunManager">
     <configuration name="InjectorRegistryTest$Q1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="injector" />
       <extension name="coverage">
@@ -166,10 +170,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.InjectorRegistryTest$Q1" />
         <item itemvalue="JUnit.InjectorRegistryTest" />
         <item itemvalue="JUnit.JSONWriterTest$Q1" />
         <item itemvalue="JUnit.InjectorRegistryTest$Q2" />
-        <item itemvalue="JUnit.InjectorRegistryTest$Q1" />
         <item itemvalue="JUnit.JSONWriterTest$Q2" />
       </list>
     </recent_temporary>
@@ -177,8 +181,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
-        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+        <option value="bundled-jdk-9823dce3aa75-cc57bc32c8c0-intellij.indexing.shared.core-IU-243.15521.24" />
+        <option value="bundled-js-predefined-d6986cc7102b-702c07f07bed-JavaScript-IU-243.15521.24" />
       </set>
     </attachedChunks>
   </component>
@@ -194,6 +198,13 @@
       <workItem from="1725954495971" duration="10505000" />
       <workItem from="1726267120182" duration="21933000" />
       <workItem from="1726556619679" duration="11009000" />
+      <workItem from="1726574455906" duration="166000" />
+      <workItem from="1726575066805" duration="9000" />
+      <workItem from="1726929733011" duration="23400000" />
+      <workItem from="1726992457818" duration="599000" />
+      <workItem from="1726994620033" duration="599000" />
+      <workItem from="1727002679412" duration="23157000" />
+      <workItem from="1727162248441" duration="5901000" />
     </task>
     <task id="LOCAL-00001" summary="create test2.txt">
       <option name="closed" value="true" />

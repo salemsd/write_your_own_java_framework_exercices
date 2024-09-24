@@ -15,11 +15,11 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="injector" options="--enable-preview" />
-      <module name="interceptor" options="--enable-preview" />
-      <module name="java-framework" options="--enable-preview" />
-      <module name="mapper" options="--enable-preview" />
-      <module name="orm" options="--enable-preview" />
+      <module name="injector" options="" />
+      <module name="interceptor" options="" />
+      <module name="java-framework" options="" />
+      <module name="mapper" options="" />
+      <module name="orm" options="" />
     </option>
   </component>
 </project>
