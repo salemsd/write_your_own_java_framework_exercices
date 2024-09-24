@@ -3,11 +3,16 @@ package org.github.forax.framework.interceptor;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 public final class InterceptorRegistry {
   private final HashMap<Class<?>, List<AroundAdvice>> adviceMap = new HashMap<>();
+  private final HashMap<Class<?>, List<Interceptor>> interceptorMap = new HashMap<>();
 
   public void addAroundAdvice(Class<? extends Annotation> annotationClass, AroundAdvice aroundAdvice) {
     Objects.requireNonNull(annotationClass);
@@ -42,13 +47,31 @@ public final class InterceptorRegistry {
                 }
               }
               return result;
-
             }));
   }
 
-  private List<AroundAdvice> findAdvices(Method method) {
+  List<AroundAdvice> findAdvices(Method method) {
+    Objects.requireNonNull(method);
+
     return Arrays.stream(method.getAnnotations())
             .flatMap(annotation -> adviceMap.getOrDefault(annotation.annotationType(), List.of()).stream())
+            .toList();
+  }
+
+  public void addInterceptor(Class <? extends Annotation> annotationClass, Interceptor interceptor) {
+    Objects.requireNonNull(annotationClass);
+    Objects.requireNonNull(interceptor);
+
+    interceptorMap
+            .computeIfAbsent(annotationClass, _ -> new ArrayList<>())
+            .add(interceptor);
+  }
+
+  List<Interceptor> findInterceptors(Method method) {
+    Objects.requireNonNull(method);
+
+    return Arrays.stream(method.getAnnotations())
+            .flatMap(annotation -> interceptorMap.getOrDefault(annotation.annotationType(), List.of()).stream())
             .toList();
   }
 }
@@ -66,4 +89,8 @@ of that interface, we'll call the lambda in parameter
 
 Java doesn't load classes that it doesn't use to memory. The class loader takes care of that
 by only loading them when needed (new or static method call). Transforms into bytecode(??)
- */
+
+ Interceptor is a more powerful and functional approach to what we did in Q1 and Q2
+  Instead of having before and after we have one single method that calls the next interceptor
+  and the next until calling the method | interceptor -> interceptor -> interceptor -> method
+*/

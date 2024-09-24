@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74bd28e4-ede9-4bbb-a92f-dae249a45c06" name="Changes" comment="InjectorRegistry, finish Q5">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="74bd28e4-ede9-4bbb-a92f-dae249a45c06" name="Changes" comment="InterceptorRegistry, finish Q2">
       <change beforePath="$PROJECT_DIR$/interceptor/src/main/java/org/github/forax/framework/interceptor/InterceptorRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/interceptor/src/main/java/org/github/forax/framework/interceptor/InterceptorRegistry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interceptor/src/test/java/org/github/forax/framework/interceptor/InterceptorRegistryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/interceptor/src/test/java/org/github/forax/framework/interceptor/InterceptorRegistryTest.java" afterDir="false" />
     </list>
@@ -204,7 +201,7 @@
       <workItem from="1726992457818" duration="599000" />
       <workItem from="1726994620033" duration="599000" />
       <workItem from="1727002679412" duration="23157000" />
-      <workItem from="1727162248441" duration="5901000" />
+      <workItem from="1727162248441" duration="6940000" />
     </task>
     <task id="LOCAL-00001" summary="create test2.txt">
       <option name="closed" value="true" />
@@ -278,7 +275,23 @@
       <option name="project" value="LOCAL" />
       <updated>1726566019934</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="InterceptorRegistry, finish Q1">
+      <option name="closed" value="true" />
+      <created>1727168172637</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1727168172637</updated>
+    </task>
+    <task id="LOCAL-00011" summary="InterceptorRegistry, finish Q2">
+      <option name="closed" value="true" />
+      <created>1727168293773</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1727168293773</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -297,8 +310,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="SQLi =&gt; JDBi" />
-    <MESSAGE value="update POM" />
     <MESSAGE value="bump to java 19" />
     <MESSAGE value="fix typos" />
     <MESSAGE value="run CI with Java 19" />
@@ -322,7 +333,9 @@
     <MESSAGE value="InjectorRegistry, finish Q1" />
     <MESSAGE value="InjectorRegistry, finish Q4" />
     <MESSAGE value="InjectorRegistry, finish Q5" />
-    <option name="LAST_COMMIT_MESSAGE" value="InjectorRegistry, finish Q5" />
+    <MESSAGE value="InterceptorRegistry, finish Q1" />
+    <MESSAGE value="InterceptorRegistry, finish Q2" />
+    <option name="LAST_COMMIT_MESSAGE" value="InterceptorRegistry, finish Q2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
