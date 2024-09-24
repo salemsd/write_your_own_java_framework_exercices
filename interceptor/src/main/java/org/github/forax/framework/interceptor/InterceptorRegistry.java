@@ -48,7 +48,7 @@ public final class InterceptorRegistry {
 
   private List<AroundAdvice> findAdvices(Method method) {
     return Arrays.stream(method.getAnnotations())
-            .flatMap(annotation -> Stream.ofNullable(adviceMap.get(annotation.annotationType())))
+            .flatMap(annotation -> adviceMap.getOrDefault(annotation.annotationType(), List.of()).stream())
             .toList();
   }
 }
