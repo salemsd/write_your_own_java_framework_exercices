@@ -74,6 +74,19 @@ public final class InterceptorRegistry {
             .flatMap(annotation -> interceptorMap.getOrDefault(annotation.annotationType(), List.of()).stream())
             .toList();
   }
+
+  static Invocation getInvocation(List<Interceptor> interceptors) {
+    Invocation invocation = Utils::invokeMethod;
+
+    for (var interceptor : interceptors.reversed()) {
+      var copyOfInvocation = invocation;
+      invocation = (instance, method, args) ->
+              // call the interceptor with the old invocation before changing it
+              interceptor.intercept(instance, method, args, copyOfInvocation);
+    }
+
+    return invocation;
+  }
 }
 
 /*
@@ -92,5 +105,5 @@ by only loading them when needed (new or static method call). Transforms into by
 
  Interceptor is a more powerful and functional approach to what we did in Q1 and Q2
   Instead of having before and after we have one single method that calls the next interceptor
-  and the next until calling the method | interceptor -> interceptor -> interceptor -> method
+  and invocation and then the next until calling the method | interceptor + invoc -> interceptor + invoc -> interceptor + invoc -> method
 */

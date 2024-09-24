@@ -260,7 +260,6 @@ public class InterceptorRegistryTest {
     }
   }  // end of Q3
 
-/*
   @Nested
   public class Q4 {
     @Test @Tag("Q4")
@@ -334,7 +333,6 @@ public class InterceptorRegistryTest {
       assertEquals(42, invocation.proceed(empty, identity, new Object[] { 42 }));
     }
   }  // end of Q4
-
 
   @Nested
   public class Q5 {
@@ -531,7 +529,7 @@ public class InterceptorRegistryTest {
       );
     }
   }  // end of Q5
-
+/*
 
   @Nested
   class Q6 {
