@@ -149,9 +149,16 @@ public final class ORM {
         primaryColumn = column;
       }
 
-      var type = TYPE_MAPPING.getOrDefault(property.getPropertyType(), DEFAULT_TYPE);
 
-      builder.append(separator).append(column).append(" ").append(type);
+      var propertyType = property.getPropertyType();
+      String notNull = "";
+      if (propertyType.isPrimitive()) {
+        notNull = "NOT NULL";
+      }
+
+      var type = TYPE_MAPPING.getOrDefault(propertyType, DEFAULT_TYPE);
+
+      builder.append(separator).append(column).append(" ").append(type).append(" ").append(notNull);
       separator = ", \n";
     }
 
