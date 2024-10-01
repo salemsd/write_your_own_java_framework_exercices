@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74bd28e4-ede9-4bbb-a92f-dae249a45c06" name="Changes" comment="InterceptorRegistry, finish Q4">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="74bd28e4-ede9-4bbb-a92f-dae249a45c06" name="Changes" comment="ORM, finish Q2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interceptor/src/main/java/org/github/forax/framework/interceptor/InterceptorRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/interceptor/src/main/java/org/github/forax/framework/interceptor/InterceptorRegistry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/orm/src/main/java/com/github/forax/framework/orm/ORM.java" beforeDir="false" afterPath="$PROJECT_DIR$/orm/src/main/java/com/github/forax/framework/orm/ORM.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/orm/src/test/java/com/github/forax/framework/orm/ORMTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/orm/src/test/java/com/github/forax/framework/orm/ORMTest.java" afterDir="false" />
     </list>
@@ -143,6 +141,12 @@
     </configuration>
     <configuration name="ORMTest" type="JUnit" factoryName="JUnit">
       <module name="orm" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.github.forax.framework.orm.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="ALTERNATIVE_JRE_PATH" value="23" />
       <option name="PACKAGE_NAME" value="com.github.forax.framework.orm" />
@@ -233,6 +237,7 @@
       <workItem from="1727597880374" duration="353000" />
       <workItem from="1727598334777" duration="599000" />
       <workItem from="1727766778479" duration="4034000" />
+      <workItem from="1727771023842" duration="5504000" />
     </task>
     <task id="LOCAL-00001" summary="create test2.txt">
       <option name="closed" value="true" />
@@ -338,7 +343,23 @@
       <option name="project" value="LOCAL" />
       <updated>1727170135536</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="ORM, finish Q1">
+      <option name="closed" value="true" />
+      <created>1727771230370</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1727771230370</updated>
+    </task>
+    <task id="LOCAL-00015" summary="ORM, finish Q2">
+      <option name="closed" value="true" />
+      <created>1727771863721</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1727771863721</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -357,8 +378,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="run CI with Java 19" />
-    <MESSAGE value="fix typo" />
     <MESSAGE value="move to Java 21" />
     <MESSAGE value="add mdule IntelliJ file" />
     <MESSAGE value="21 is not yet released" />
@@ -382,7 +401,9 @@
     <MESSAGE value="InterceptorRegistry, finish Q2" />
     <MESSAGE value="InterceptorRegistry, finish Q3" />
     <MESSAGE value="InterceptorRegistry, finish Q4" />
-    <option name="LAST_COMMIT_MESSAGE" value="InterceptorRegistry, finish Q4" />
+    <MESSAGE value="ORM, finish Q1" />
+    <MESSAGE value="ORM, finish Q2" />
+    <option name="LAST_COMMIT_MESSAGE" value="ORM, finish Q2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

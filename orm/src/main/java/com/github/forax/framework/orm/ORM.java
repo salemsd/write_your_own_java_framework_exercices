@@ -1,27 +1,19 @@
 package com.github.forax.framework.orm;
 
 import javax.sql.DataSource;
-import java.beans.BeanInfo;
-import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.io.Serial;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Proxy;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
-import java.util.StringJoiner;
 import java.util.stream.Stream;
 
 public final class ORM {
+
   private ORM() {
     throw new AssertionError();
   }
@@ -104,5 +96,87 @@ public final class ORM {
     }
 
     return connection;
+  }
+
+  static String findColumnName(PropertyDescriptor property) {
+    var getter = property.getReadMethod();
+    var column = getter.getAnnotation(Column.class);
+    var name = column == null? property.getName(): column.value();
+    return name.toUpperCase(Locale.ROOT);
+  }
+
+  static String findTableName(Class<?> beanClass) {
+    if (beanClass.isAnnotationPresent(Table.class)) {
+      return beanClass.getAnnotation(Table.class).value();
+    }
+
+    // getSimpleName returns an empty string if it's an anonymous class
+    // Hibernate doesn't work with inner classes
+    return beanClass.getSimpleName().toUpperCase(Locale.ROOT);
+  }
+
+  private static boolean isPrimaryKey(PropertyDescriptor property) {
+    var getter = property.getReadMethod();
+
+    if (getter == null) {
+      return false;
+    }
+
+    return getter.isAnnotationPresent(Id.class);
+  }
+
+  public static final String DEFAULT_TYPE = "VARCHAR(255)";
+
+  public static void createTable(Class<?> beanClass) throws SQLException {
+    Objects.requireNonNull(beanClass);
+
+    /* Can simplify this by creating a builder class, that has a toString method to return the query
+    and fields to store the primary key, columns, ..
+     */
+    var beanInfo = Utils.beanInfo(beanClass);
+    var properties = beanInfo.getPropertyDescriptors();
+
+    var builder = new StringBuilder();
+    builder.append("CREATE TABLE ").append(findTableName(beanClass)).append(" (\n");
+    var separator = "";
+    String primaryColumn = null;
+    for (var property : properties) {
+      if (property.getName().equals("class")) {
+        continue;
+      }
+      var column = findColumnName(property);
+      if (isPrimaryKey(property)) {
+        primaryColumn = column;
+      }
+
+      var type = TYPE_MAPPING.getOrDefault(property.getPropertyType(), DEFAULT_TYPE);
+
+      builder.append(separator).append(column).append(" ").append(type);
+      separator = ", \n";
+    }
+
+    if (primaryColumn != null) {
+      builder.append(separator).append("PRIMARY KEY (").append(primaryColumn).append(")");
+    }
+    builder.append(")");
+
+    // Stream: not a good idea with builder)
+//    Arrays.stream(properties)
+//            .filter(property -> !property.getName().equals("class"))
+//            .forEach(property -> {
+//              var column = findColumnName(property);
+//              var type = TYPE_MAPPING.getOrDefault(property.getPropertyType(), DEFAULT_TYPE);
+//              builder.append(separator).append(column).append(',').append(type);
+//              separator = ",\n";
+//            });
+
+    var query = builder.toString();
+    var connection = currentConnection();
+    // escape stuff ??
+    try (var statement = connection.createStatement()) {
+      statement.executeUpdate(query);
+    }
+
+    connection.commit(); // Not needed because create table are auto commit
   }
 }
