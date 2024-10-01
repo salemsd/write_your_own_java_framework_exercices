@@ -1,5 +1,7 @@
 package org.github.forax.framework.interceptor;
 
+import jdk.jshell.execution.Util;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -11,16 +13,24 @@ import java.util.Arrays;
 import java.util.stream.Stream;
 
 public final class InterceptorRegistry {
-  private final HashMap<Class<?>, List<AroundAdvice>> adviceMap = new HashMap<>();
   private final HashMap<Class<?>, List<Interceptor>> interceptorMap = new HashMap<>();
+
 
   public void addAroundAdvice(Class<? extends Annotation> annotationClass, AroundAdvice aroundAdvice) {
     Objects.requireNonNull(annotationClass);
     Objects.requireNonNull(aroundAdvice);
     // Could have used a LinkedHashSet to account for duplicates but it doesn't happen often
-    adviceMap
-            .computeIfAbsent(annotationClass, _ -> new ArrayList<>())
-            .add(aroundAdvice);
+    addInterceptor(annotationClass, (instance, method, args, invocation) -> {
+      aroundAdvice.before(instance, method, args);
+      Object result = null;
+      try {
+        result = invocation.proceed(instance, method, args);
+      } finally {
+        aroundAdvice.after(instance, method, args, result);
+      }
+
+      return result;
+    });
   }
 
   // Returns a proxy that when we call a method, it will call all the before methods, and then the method and then all the after
@@ -31,25 +41,13 @@ public final class InterceptorRegistry {
     // Since an interface can be implemented by multiple classes, we need an array
     return interfaceType.cast(Proxy.newProxyInstance(interfaceType.getClassLoader(), new Class<?>[] { interfaceType },
             (proxy, method, args) -> {
-              var advices = findAdvices(method);
-              // Advices are called in the order of annotations
-              for (var advice : advices) {
-                advice.before(instance, method, args);
-              }
-              Object result = null; // because result is only available in try block otherwise
-              // initialize to null because try-finally
-              try {
-                result = Utils.invokeMethod(instance, method, args);
-              } finally { // we want to do the after even if there is exceptions
-                // it respects the concept of advices that want to run the after no matter what happens
-                for (var advice : advices) {
-                  advice.after(instance, method, args, result);
-                }
-              }
-              return result;
+              var interceptors = findInterceptors(method);
+              var invocation = getInvocation(interceptors);
+              return invocation.proceed(instance, method, args);
             }));
   }
 
+  /* Useless from Q5
   List<AroundAdvice> findAdvices(Method method) {
     Objects.requireNonNull(method);
 
@@ -57,6 +55,7 @@ public final class InterceptorRegistry {
             .flatMap(annotation -> adviceMap.getOrDefault(annotation.annotationType(), List.of()).stream())
             .toList();
   }
+  */
 
   public void addInterceptor(Class <? extends Annotation> annotationClass, Interceptor interceptor) {
     Objects.requireNonNull(annotationClass);

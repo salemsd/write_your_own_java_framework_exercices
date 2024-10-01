@@ -74,5 +74,31 @@ public final class ORM {
 
   // --- do not change the code above
 
-  //TODO
+  private static final ThreadLocal<Connection> CONNECTION_LOCAL = new ThreadLocal<>();
+
+  public static void transaction(DataSource dataSource, TransactionBlock block) throws SQLException {
+    Objects.requireNonNull(dataSource);
+    Objects.requireNonNull(block);
+    try (var connection = dataSource.getConnection()) {
+      connection.setAutoCommit(false);
+      CONNECTION_LOCAL.set(connection);
+
+      try {
+        block.run();
+      } finally {
+        CONNECTION_LOCAL.remove();
+      }
+
+      connection.commit();
+    }
+  }
+
+  static Connection currentConnection() {
+    var connection = CONNECTION_LOCAL.get();
+    if (connection == null) {
+      throw new IllegalStateException("no transactions available");
+    }
+
+    return connection;
+  }
 }
