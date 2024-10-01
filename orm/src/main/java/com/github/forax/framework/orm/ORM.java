@@ -85,7 +85,11 @@ public final class ORM {
 
       try {
         block.run();
-      } finally {
+      } catch (Exception e) {
+        connection.rollback();
+        throw e; // throw it back
+      }
+      finally { // because we want it to happen no matter what happens
         CONNECTION_LOCAL.remove();
       }
 
